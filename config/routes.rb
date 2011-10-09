@@ -1,4 +1,8 @@
 SocietyMgmt::Application.routes.draw do
+  resources :uploads
+
+  resources :messages
+
   resources :designations
 
   devise_for :users
