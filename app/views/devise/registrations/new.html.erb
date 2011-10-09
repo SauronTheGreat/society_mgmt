@@ -1,0 +1,108 @@
+
+
+
+<h2>Sign up</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+
+
+
+
+    <table>
+      <tr>
+        <td>
+          <%= f.label :username %>
+        </td>
+        <td>
+          <%= f.text_field :username,:value=>"Username" %>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>
+          <%= f.label :first_name %>
+        </td>
+        <td>
+          <%= f.text_field :first_name,:value=>"First Name" %>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :last_name %>
+        </td>
+        <td>
+          <%= f.text_field :last_name ,:value=>"Last Name"%>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label "Designation" %>
+          F
+        </td>
+        <td>
+          <%= f.select :designation_id, Designation.all.collect { |d| [d.name, d.id] } %>
+        </td>
+        <td>
+
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :email %>
+        </td>
+        <td>
+          <%= f.email_field :email ,:value=>"Email"%>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :password %>
+
+
+        </td>
+        <td>
+          <%= f.password_field :password,:value=>"password" %>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :password_confirmation %>
+        </td>
+        <td>
+          <%= f.password_field :password_confirmation,:value=>"password" %>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+    </table>
+
+
+
+
+
+    <br>
+    <br>
+
+    <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>
