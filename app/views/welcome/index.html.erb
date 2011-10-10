@@ -2,9 +2,32 @@
 
 <% if current_user %>
 <p>Welcome <%= current_user.username %></p>
-    <%= link_to "Sign Out",destroy_user_session_path,:method => :delete %>
-    <%= link_to "Edit Profile", edit_user_registration_path %>
-    <%= link_to "new upload",new_upload_path %>
+    <%= link_to "Sign Out",destroy_user_session_path,:method => :delete %> |
+    <%= link_to "Edit Profile", edit_user_registration_path %>|
+    <%= link_to "new upload",new_upload_path %>|
+    <%= link_to "Fix a new Meeting upload",new_meeting_path %>
+   <hr>
+
+   <div id="dashboard">
+     <p>
+       This is user specific data for dashboard<br>
+       This section act as a dashboard...<br>
+       This will contain sections for scheduled meetings,messages and new resolution<br>
+
+       <br>
+       <br>
+       <br>
+
+       <%= link_to "View All Meetings",meetings_path %> |
+       <%= link_to "View Inbox",messages_path %>  |
+       <%= link_to "View Sent Messages",sent_messages_path %>  |
+       <%= link_to "View All Resolutions",resolutions_path %>
+
+
+     </p>
+
+   </div>
+
 
 <% else %>
 

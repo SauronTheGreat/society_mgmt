@@ -1,4 +1,10 @@
 SocietyMgmt::Application.routes.draw do
+  resources :resolutions
+
+  resources :minutes
+
+  resources :meetings
+
   resources :uploads
 
   resources :messages
@@ -8,6 +14,7 @@ SocietyMgmt::Application.routes.draw do
   devise_for :users
 
   root :to=>'welcome#index'
+  match "sent_messages"=>'messages#sent_messages'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,115 @@
+/**
+ * Created by JetBrains RubyMine.
+ * User: rushabhhathi
+ * Date: 9/10/11
+ * Time: 11:58 AM
+ * To change this template use File | Settings | File Templates.
+ */
+
+//this function is used to set the string beside the textbox in user signup form
+function setandget(t, s) {
+    var parent = t.parent();
+    var target = parent.next();
+    target.text(s);
+    //target.text("Enter your " + $(this).attr("id"))
+}
+
+//this iis used to get id of the textbox ..
+function gettargetstring(t) {
+    var s = t.attr("id");
+    var s1 = s.split("_");
+    var target_string = "";
+    for (i = 1; i < s1.length; i++) {
+        target_string = target_string + s1[i] + " ";
+    }
+
+    return target_string;
+}
+
+
+$(document).ready(function() {
+
+    //this function is called when we focus on a particular text box
+    $("#user_new input").focusin(function(event) {
+
+        $(this).attr("value", "");
+//        var parent = $(this).parent();
+//        var target = parent.next();
+//        target.text("Enter your " + $(this).attr("id"))
+
+
+        setandget($(this), "Enter your " + gettargetstring($(this)));
+
+
+    });
+
+    //this is called when focus of text box is lost
+    $("#user_new input").focusout(function(event) {
+        if ($(this).attr("value") == "") {
+            $(this).attr("value", gettargetstring($(this)));
+            setandget($(this), "Enter your" + gettargetstring($(this)));
+        }
+
+    });
+
+    //javascript for new email page
+
+    var index=0;
+    //this is called when we click on add recipient link in new email page
+    $("#recipient_link").click(function(event) {
+
+        var append_string = $("select option:selected").text();
+        var flag=1;
+
+
+        //alert(append_string);
+        $("#recipients_list div").each(function(index){
+
+
+
+            if ($(this).children(":text").attr("value")==append_string)
+            {
+                alert("Recipient Already added");
+                 flag=0;
+            }
+
+        }) ;
+
+
+        if (flag==1)
+        {
+        $("#recipients_list").append("<div><input type=" + "text disabled=" + "disabled value=" + append_string + "><a href=" + " #" + " id=" + "remove_recipient" + ">Remove Recipient</a><br><input name="+"recipients"+index+" "+"type="+"hidden"+" value="+append_string+">"+"</"+"div>");
+        //    $("recipients_list").append("<input id="+"hello"+"type='hidden' value= "+append_string);
+            index++;
+        }
+        else
+        {
+            flag=1;
+        }
+
+
+        event.preventDefault();
+
+    });
+
+
+    //this is called when we click remove recipient
+    //we have used live here because its a dynamically added content and this enables us to crete bindings for all elements..now and future
+    $("#remove_recipient").live('click', function(event) {
+
+
+                var target = $(this).parent();
+                target.remove();
+
+                event.preventDefault();
+
+            });
+
+    $("form").submit(function(){
+
+        alert("form submitted");
+        $(this).append("<input name=number_of_recipients type='hidden' value="+index+">");
+    })  ;
+
+
+});

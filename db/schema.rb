@@ -11,10 +11,51 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111009110918) do
+ActiveRecord::Schema.define(:version => 20111009130402) do
 
   create_table "designations", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "meetings", :force => true do |t|
+    t.datetime "schedule"
+    t.string   "venue"
+    t.boolean  "done"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "from_id"
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "minutes", :force => true do |t|
+    t.integer  "meeting_id"
+    t.text     "body"
+    t.boolean  "reviewed"
+    t.integer  "reviewed_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recipients", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "message_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resolutions", :force => true do |t|
+    t.string   "subject"
+    t.string   "body"
+    t.boolean  "passed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
