@@ -105,9 +105,9 @@ $(document).ready(function() {
 
             });
 
-    $("form").submit(function(){
+    $("#new_message").submit(function(){
 
-        alert("form submitted");
+      //  alert("form submitted");
         $(this).append("<input name=number_of_recipients type='hidden' value="+index+">");
     })  ;
 

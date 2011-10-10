@@ -1,4 +1,12 @@
 SocietyMgmt::Application.routes.draw do
+  resources :comments
+
+  resources :vendors
+
+  resources :proposals
+
+  resources :flats
+
   resources :resolutions
 
   resources :minutes

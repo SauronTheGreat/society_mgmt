@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   #the relationships
   has_many :uploads
   has_many :messages
+  has_many :flats
 end
